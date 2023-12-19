@@ -1,3 +1,4 @@
+import CategoryFilter from "@/components/shared/category-filter";
 import Collection from "@/components/shared/collection";
 import Search from "@/components/shared/search";
 import { Button } from "@/components/ui/button";
@@ -55,7 +56,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </h2>
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
-          <Search /> category filter
+          <Search /> <CategoryFilter />
         </div>
 
         <Collection
