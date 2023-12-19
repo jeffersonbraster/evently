@@ -16,7 +16,7 @@ import { formEventSchema } from "@/lib/validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import Dropdown from "../drop-down";
+import Dropdown from "../category/drop-down";
 import { Textarea } from "@/components/ui/textarea";
 import { FileUploader } from "../file-uploader";
 import DatePicker from "react-datepicker";
@@ -38,7 +38,13 @@ const EventForm = ({ userId, type }: EventFormProps) => {
   });
 
   function onSubmit(values: z.infer<typeof formEventSchema>) {
-    console.log(values);
+    const eventData = values;
+
+    let uploadedImageUrl = values.imageUrl;
+
+    if (files.length > 0) {
+      const uploadedImages = await startUpload(files);
+    }
   }
 
   return (
@@ -249,6 +255,8 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                               </label>
                               <Checkbox
                                 id="isFree"
+                                onCheckedChange={field.onChange}
+                                checked={field.value}
                                 className="mr-2 h-5 w-5 border-2 border-primary-500"
                               />
                             </div>
